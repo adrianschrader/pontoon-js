@@ -1,7 +1,7 @@
+# Created by https://www.gitignore.io/api/osx,windows,linux,node
+
 # Folders
 docs/*
-
-# Created by https://www.gitignore.io/api/osx,windows,linux,node
 
 ### OSX ###
 .DS_Store
