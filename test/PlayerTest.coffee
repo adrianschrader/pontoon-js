@@ -23,3 +23,5 @@ describe "Player", ->
     player.play(21, dice)
     player.resetScore()
     player.getScore().should.equal(0)
+
+    true.should.be.false
