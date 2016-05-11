@@ -12,12 +12,14 @@ describe "Player", ->
   it "should roll the dice and return his score", ->
     dice = new Dice 6
     player = new Player "George"
-    player.play 21, dice
+
+    player.play(21, dice)
     player.getScore().should.be.above(0)
 
   it "should reset his score", ->
     dice = new Dice 6
     player = new Player "George"
-    player.play 21, dice
+
+    player.play(21, dice)
     player.resetScore()
     player.getScore().should.equal(0)

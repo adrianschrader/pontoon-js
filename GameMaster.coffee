@@ -22,6 +22,7 @@ module.exports = class GameMaster
       player.resetScore()
       player.play(goal, @dice)
 
+    # Sort the players by their score, the winning player should be on position 0. Scores higher than the goal will be disqualified.
     @players.sort (a, b) ->
       scoreA = a.getScore()
       scoreB = b.getScore()
@@ -33,7 +34,14 @@ module.exports = class GameMaster
 
       return scoreA < scoreB ? 1 : scoreA > scoreB ? -1 : 0
 
+    # Decide if there is a tie between the leading players
     tie = @players[0].getScore() == @players[1].getScore() or @players[0].getScore() > goal
-    winner = @players[0]
+    winner = @players[0] if not tie
 
-    callback(tie, @players[0], @players)
+    # Give back the results
+    callback(tie, winner, @players)
+    return {
+      tie: tie,
+      winner: winner
+      players: @players
+    }

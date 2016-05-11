@@ -34,19 +34,20 @@ describe "GameMaster", ->
 
   it "should start a game and give the winner", ->
     master = new GameMaster
-      playerTypes: [ Player.Balanced, Player.Cautious ]
+      playerTypes: [ Player.Balanced, Player.Balanced, Player.Cautious ]
 
     for i in [ 1 .. 100 ]
       master.play 21, (tie, winner, players) ->
         scoreA = players[0].getScore()
         scoreB = players[1].getScore()
 
+        # Determine consistency of winner
         if not tie
           winner.should.be.an.instanceof(Player)
           winner.should.equal(players[0])
 
         if scoreA == scoreB
-          # Both players could have won, it's a tie
+          # It's a tie
           tie.should.be.true
         else if scoreA > 21 and scoreB > 21
           # Both players lose, it's a tie
