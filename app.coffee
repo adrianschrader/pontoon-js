@@ -1,10 +1,16 @@
 Dice = require "./Dice.coffee"
 Player = require "./Player.coffee"
+GameMaster = require "./GameMaster.coffee"
 
-dice = new Dice 6
-player = new Player.Cautious "George"
+master = new GameMaster
+  diceFaces: 6
+  playerTypes: [ Player.Cautious, Player.Balanced]
 
-for i in [ 1 .. 10 ]
-  player.resetScore()
-  player.play 21, dice
-  console.log player.getScore()
+for i in [ 1 .. 3 ]
+  master.play 21, (tie, winner, players) ->
+    if tie
+      console.log "It's a tie!"
+    else
+      console.log winner.getName() + " won!"
+    for player in players
+      console.log "#{player.getName()} scored #{player.getScore()} points"

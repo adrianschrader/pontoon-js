@@ -1,11 +1,14 @@
 module.exports = class Dice
   constructor: (@faces = 6) ->
 
-  roll: ->
-    return Math.random() * @faces // 1 + 1
+  roll: () ->
+    return Math.floor(Math.random() * @faces) + 1
 
-  getFaces: ->
+  getFaces: () ->
     return @faces
 
-  getMeanValue: ->
+  getMeanValue: () ->
     return 0.5 + ( @faces / 2.0 )
+
+  getOutcomes: () ->
+    return [ 1 .. @faces ];
