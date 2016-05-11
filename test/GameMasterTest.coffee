@@ -58,3 +58,12 @@ describe "GameMaster", ->
         else
           # This case is not supposed to happen, because A always wins
           true.should.be.false
+
+  it "should give the total winner", ->
+    master = new GameMaster
+      playerTypes: [ Player.Balanced, Player.Balanced, Player.Cautious ]
+
+    for i in [ 1 .. 10 ]
+      master.play(21, ->)
+
+    master.getTotalWinner().getScore().should.be.within(0, 30)

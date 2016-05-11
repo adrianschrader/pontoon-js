@@ -4,6 +4,10 @@ Player  = require "../Player.coffee"
 chai.should()
 
 describe "Player", ->
+  it "should give all constants", ->
+    Player.WINNING_POINTS.should.be.a('number');
+    Player.LOSING_POINTS.should.be.a('number');
+    Player.TIE_POINTS.should.be.a('number');
 
   it "should say his own name", ->
     player = new Player "George"
@@ -29,24 +33,29 @@ describe "Player", ->
     player2 = new Player "Joe"
 
     result1 =
-      winner: player1,
-      runnerup: player2,
-      tie: false,
-      goal: 21,
+      winner: player1
+      runnerup: player2
+      tie: false
+      goal: 21
       faces: 6
 
     result2 =
-      winner: player2,
-      runnerup: player1,
-      tie: true,
-      goal: 21,
+      winner: player2
+      runnerup: player1
+      tie: true
+      goal: 21
       faces: 6
 
+    player1.addResult(result1)
+    player2.addResult(result1)
+    player1.addResult(result2)
+    player2.addResult(result2)
+
     # Player 1 won once (3 points) and draw once (1 point)
-    player1.getPoints().should.equal(3 + 1)
+    player1.getPoints().should.equal(4)
 
     # Player 2 lost once (0 points) and draw once (1 point)
-    player2.getPoints().should.equal(0 + 1)
+    player2.getPoints().should.equal(1)
 
   it "should reset the scoreboard points", ->
     player1 = new Player "George"

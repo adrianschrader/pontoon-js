@@ -14,3 +14,5 @@ for i in [ 1 .. 3 ]
       console.log winner.getName() + " won!"
     for player in players
       console.log "#{player.getName()} scored #{player.getScore()} points"
+
+console.log "The winner is #{master.getTotalWinner().getName()} with #{master.getTotalWinner().getPoints()} points"
