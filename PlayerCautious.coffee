@@ -14,5 +14,5 @@ module.exports = class PlayerCautious extends Player
     # the dice. With a scaling factor of one half, this means the player will
     # lose in 50% of cases, but has a good  chance of winning for the remaining
     # 50%.
-    if this.getScore() + dice.getFaces() <= goal
+    if this.getScore() < goal - dice.getFaces()
       this.play goal, dice

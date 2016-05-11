@@ -4,7 +4,7 @@ Player = require "./Player.coffee"
 # This class implements a game strategy. The player will throw so long, that he
 # has a chance of
 module.exports = class PlayerBalanced extends Player
-  constructor: (@name, @scaling = 1) ->
+  constructor: (@name) ->
     super @name
 
   play: (goal, dice) ->
@@ -14,5 +14,5 @@ module.exports = class PlayerBalanced extends Player
     # the dice. With a scaling factor of one half, this means the player will
     # lose in 50% of cases, but has a good  chance of winning for the remaining
     # 50%.
-    if this.getScore() + ( dice.getMeanValue() * @scaling ) <= goal
+    if this.getScore() < goal - Math.floor(dice.getMeanValue())
       this.play goal, dice
