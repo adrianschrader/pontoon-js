@@ -9,9 +9,8 @@ describe 'Dice', ->
     dice.getFaces().should.equal 12
 
   it 'should generate all possible outcomes', ->
-    dice = new Dice 12
-    dice.getOutcomes()
-      .should.deep.equal [ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12 ];
+    dice = new Dice 4
+    dice.getOutcomes().should.deep.equal [ 1, 2, 3, 4 ];
 
   it 'should give the arithmetic mean', ->
     dice = new Dice 12

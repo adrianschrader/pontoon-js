@@ -4,12 +4,6 @@ Player  = require "../Player.coffee"
 GameMaster  = require "../GameMaster.coffee"
 
 describe "GameMaster", ->
-  it "should use the playerLabel", ->
-    master = new GameMaster
-      playerLabel: "Spieler "
-      playerTypes: [ Player.Balanced ]
-
-    master.getPlayers()[0].getName().should.equal("Spieler 1")
 
   it "should create Dice from the number of dice faces", ->
     master = new GameMaster
@@ -19,10 +13,13 @@ describe "GameMaster", ->
 
   it "should create Players from their types", ->
     master = new GameMaster
+      playerLabel: "Spieler "
       playerTypes: [ Player.Balanced, Player.Cautious ]
 
     master.getPlayers()[0].should.be.an.instanceof(Player.Balanced);
     master.getPlayers()[1].should.be.an.instanceof(Player.Cautious);
+
+    master.getPlayers()[0].getName().should.equal("Spieler 1")
 
   it "should create Players from objects", ->
     players = [ new Player.Balanced(), new Player.Cautious() ]
